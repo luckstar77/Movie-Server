@@ -35,6 +35,10 @@ jobs:
         
       # run tests!
       - run: yarn test
-
+  deployment:
+    staging:
+      branch: staging
+      heroku:
+        appname: luckstar77-movie-server
 
 
