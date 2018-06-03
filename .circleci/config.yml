@@ -35,10 +35,12 @@ jobs:
         
       # run tests!
       - run: yarn test
-  deployment:
-    staging:
-      branch: staging
-      heroku:
-        appname: luckstar77-movie-server
-
-
+  deploy:
+      docker:
+        - image: luckstar77/movie-server
+      steps:
+        - checkout
+        - run:
+            name: luckstar77-movie-server
+            command: |
+              git push https://heroku:e2f30f49-6fa2-414c-bb0f-c581771ae53c@git.heroku.com/luckstar77-movie-server.git master
