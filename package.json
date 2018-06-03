@@ -22,6 +22,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --daemon --title=egg-server-Movie-Server",
+    "docker": "egg-scripts start --title=egg-server-Movie-Server",
     "stop": "egg-scripts stop --title=egg-server-Movie-Server",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
