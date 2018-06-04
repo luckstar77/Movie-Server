@@ -21,7 +21,7 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --port=$PORT --daemon --title=egg-server-Movie-Server",
+    "start": "egg-scripts start --port=$PORT --title=egg-server-Movie-Server",
     "docker": "egg-scripts start --port=$PORT --title=egg-server-Movie-Server",
     "stop": "egg-scripts stop --title=egg-server-Movie-Server",
     "dev": "egg-bin dev",
