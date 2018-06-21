@@ -8,8 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
       # - image: luckstar77/movie-server
-      - image: circleci/node:8.11.2 //circleci包好的node-container
-      - image: docker:17.05.0-ce-git // 包含git的container
+      - image: circleci/node:8.11.2
+      - image: docker:17.05.0-ce-git
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
