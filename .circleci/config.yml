@@ -39,7 +39,8 @@ jobs:
       # - run: yarn test
       - run:
           name: Testing
-          command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
+          command: ls -al nodock
+          # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
           # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
 #  deploy:
 #      docker:
