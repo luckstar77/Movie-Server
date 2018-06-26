@@ -38,8 +38,6 @@ jobs:
       - run:
           name: Testing
           command: 
-            git submodule sync
-            git submodule update --init
             ls -al nodock
           # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
           # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
