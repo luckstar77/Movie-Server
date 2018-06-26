@@ -19,12 +19,6 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - checkout:
-          post:
-            - git submodule sync
-            - git submodule update --init
-
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -43,7 +37,10 @@ jobs:
       # - run: yarn test
       - run:
           name: Testing
-          command: ls -al nodock
+          command: 
+            git submodule sync
+            git submodule update --init
+            ls -al nodock
           # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
           # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
 #  deploy:
