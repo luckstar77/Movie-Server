@@ -16,7 +16,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/app
+    working_directory: /opt/app/
 
     steps:
       - setup_remote_docker:   # (2)
