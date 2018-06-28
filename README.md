@@ -36,4 +36,5 @@ $ npm stop
 
 ```bash
 $ docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.dev.yml up -d node mysql
+$ docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml up node mysql
 ```
