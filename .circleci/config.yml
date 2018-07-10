@@ -7,34 +7,51 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: luckstar77/movie-server
+      # - image: luckstar77/movie-server
+      - image: circleci/node:8.11.2
+      - image: docker:17.05.0-ce-git
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/app
 
     steps:
-      - checkout
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true # (3)
+          
+      - checkout:
+          post:
+            - git submodule sync
+            - git submodule update --init
+
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v4-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - v4-dependencies-
 
-      - run: yarn install
+      # - run: yarn install
 
-      - save_cache:
+      # - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v4-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: yarn test
+      # - run: yarn test
+      - run:
+          name: Testing
+          command: |
+            pwd
+            ls -al
+            git submodule sync && git submodule update --init
+            docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
+          # command: docker-compose -f nodock/docker-compose.yml -f nodock/docker-compose.test.yml run node
 #  deploy:
 #      docker:
 #        - image: luckstar77/movie-server
