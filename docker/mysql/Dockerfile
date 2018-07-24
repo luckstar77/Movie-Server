@@ -1,6 +1,6 @@
 # docker image of facelog mysql
 # version 1.0.0
-FROM mysql:5.6
+FROM mysql:5.7
 
 ENV MYSQL_ALLOW_EMPTY_PASSWORD yes
 
