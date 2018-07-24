@@ -1,16 +1,9 @@
-# Dockerfile
+# docker image of facelog mysql
+# version 1.0.0
+FROM mysql:5.6
 
-# 從 [Docker Hub](https://hub.docker.com/) 安裝 Node.js image。
-FROM node:8.11.2
+ENV MYSQL_ALLOW_EMPTY_PASSWORD yes
 
-# 設定 container 的預設目錄位置
-WORKDIR /Movie-Server
+COPY sql/create_table.sql /docker-entrypoint-initdb.d
 
-# 將專案根目錄的檔案加入至 container
-# 安裝 npm package
-ADD . /Movie-Server
-RUN npm install
-
-# 開放 container 的 port
-EXPOSE 7001
-CMD npm run docker
+EXPOSE 3306
