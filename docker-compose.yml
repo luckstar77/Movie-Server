@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  mysql:
+    build: 
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - "3306:3306"
+  node:
+    build: 
+      context: .
+      dockerfile: docker/node/Dockerfile
+    ports:
+      - "7001:7001"
+    depends_on:
+      - mysql
