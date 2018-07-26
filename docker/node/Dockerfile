@@ -2,9 +2,9 @@
 # version 1.0.0
 FROM node:8.9.0
 
-WORKDIR /usr/src/app
+WORKDIR ~/app
 
-COPY . /usr/src/app/
+COPY . ~/app/
 
 EXPOSE 7001
 

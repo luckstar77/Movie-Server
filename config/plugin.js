@@ -3,5 +3,5 @@
 // exports.static = true;
 
 exports.validate = {
-    package: 'egg-validate',
+  package: 'egg-validate',
 };
