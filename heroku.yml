@@ -3,4 +3,4 @@ build:
     web: Dockerfile
     worker: worker/Dockerfile
 run:
-  web: npm run docker 
+  web: npm run test 
