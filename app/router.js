@@ -5,5 +5,5 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.post('/signup', app.middlewares.validateSignupBody, controller.account.signup);
+  router.post('/thirdparty/login', app.middlewares.validateThirdpartyLoginBody, controller.account.thirdpartyLogin);
 };

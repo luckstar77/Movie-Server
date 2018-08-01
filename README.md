@@ -37,3 +37,10 @@ $ npm stop
 ```bash
 $ docker-compose up -d
 ```
+
+### FB
+
+```bash
+$ export FBId=$FBId
+$ export FBSecret=$FBSecret
+```

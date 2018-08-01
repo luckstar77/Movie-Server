@@ -1,5 +1,3 @@
-# docker image of facelog mysql
-# version 1.0.0
 FROM node:8.9.0
 
 WORKDIR /app
