@@ -44,3 +44,12 @@ $ docker-compose up -d
 $ export FBId=$FBId
 $ export FBSecret=$FBSecret
 ```
+
+### mysql
+
+```bash
+$ export mysqlHost=$mysqlHost
+$ export mysqlUser=$mysqlUser
+$ export mysqlPassword=$mysqlPassword
+$ export mysqlDatabase=$mysqlDatabase
+```

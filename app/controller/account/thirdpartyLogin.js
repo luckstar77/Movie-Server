@@ -66,5 +66,5 @@ module.exports = async ctx => {
   let user = await ctx.service.users.find(userId);
   const userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
 
-  ctx.body = userToken;
+  ctx.body = { token: userToken };
 };
