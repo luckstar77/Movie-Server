@@ -26,15 +26,15 @@ module.exports = appInfo => {
     // 单数据库信息配置
     client: {
       // host
-      host: 'localhost',
+      host: process.env.mysqlHost,
       // 端口号
       port: '3306',
       // 用户名
-      user: 'root',
+      user: process.env.mysqlUser,
       // 密码
-      password: '',
+      password: process.env.mysqlPassword,
       // 数据库名
-      database: 'docker_database',
+      database: process.env.mysqlDatabase,
     },
     // 是否加载到 app 上，默认开启
     app: true,
