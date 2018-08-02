@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `docker_database` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `docker_database`;
+CREATE DATABASE  IF NOT EXISTS `test_database` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `test_database`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: docker_database

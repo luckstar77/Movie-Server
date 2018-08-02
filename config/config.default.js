@@ -42,5 +42,9 @@ module.exports = appInfo => {
     agent: false,
   }
 
+  config.logger = {
+    level: 'DEBUG',
+  };
+
   return config;
 };
