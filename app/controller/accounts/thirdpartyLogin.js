@@ -9,8 +9,6 @@ module.exports = async ctx => {
   let id = ctx.request.body.id;
   const FBAuthTokenUrl = `https://graph.facebook.com/debug_token?access_token=${ctx.app.config.FB.id}|${ctx.app.config.FB.secret}&input_token=${token}`;
 
-  ctx.logger.info('request data: %j', ctx.request.body);
-
   let FBAuthData = await (() => new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'test')
       resolve({});

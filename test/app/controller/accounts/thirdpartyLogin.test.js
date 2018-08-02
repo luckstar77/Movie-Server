@@ -2,7 +2,7 @@
 
 const { app, assert } = require('egg-mock/bootstrap');
 
-describe('test/app/controller/account/thirdpartyLogin.test.js', () => {
+describe('test/app/controller/accounts/thirdpartyLogin.test.js', () => {
   it('should POST /thirdparty/login', () => {
     return app.httpRequest()
       .post('/thirdparty/login')
