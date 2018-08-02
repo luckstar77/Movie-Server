@@ -10,10 +10,11 @@ class UsersService extends Service {
         return user[0];
     }
 
-    async createByThirdparty(account, nickname) {
+    async createByThirdparty(account, nickname, cover) {
         const result = await this.app.mysql.insert('users', { 
             account,
             nickname,
+            cover
         });
 
         return result.insertId;

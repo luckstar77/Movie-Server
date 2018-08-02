@@ -29,12 +29,17 @@ module.exports = async ctx => {
     });
   }))();
 
-  const FBGetUserUrl = `https://graph.facebook.com/${id}?access_token=${token}`;
+  const FBGetUserUrl = `https://graph.facebook.com/${id}?fields=id,name,picture&access_token=${token}`;
 
   let FBUser = await (() => new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'test')
       resolve({
         name: 'test',
+        picture: {
+          data: {
+            url: 'test'
+          }
+        }
       });
 
     request.get(FBGetUserUrl, (err, httpResponse, body) => {
@@ -57,7 +62,7 @@ module.exports = async ctx => {
   let userId = thirdparty && thirdparty.users_id;
 
   if (!thirdparty) {
-    userId = await ctx.service.users.createByThirdparty(account, FBUser.name);
+    userId = await ctx.service.users.createByThirdparty(account, FBUser.name, FBUser.picture.data.url);
     let thirdpartyId = await ctx.service.thirdparties.create(id, protocol, token, userId);
   }
 

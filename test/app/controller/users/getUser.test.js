@@ -8,7 +8,7 @@ describe('test/app/controller/users/getUser.test.js', () => {
   
   before( async () => {
     ctx = app.mockContext();
-    const userId = await ctx.service.users.createByThirdparty('123123','123123');
+    const userId = await ctx.service.users.createByThirdparty('123123', '123123', '123123');
     const user = await ctx.service.users.find(userId);
     userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
   });
