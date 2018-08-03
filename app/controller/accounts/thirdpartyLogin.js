@@ -26,7 +26,9 @@ module.exports = async ctx => {
     });
   }))();
 
+  ctx.logger.info('id, token: %j, %j', id, token);
   const FBGetUserUrl = `https://graph.facebook.com/${id}?fields=id,name,picture&access_token=${token}`;
+  ctx.logger.info('FBGetUserUrl: %j', FBGetUserUrl);
 
   const FBUser = await (() => new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'test') {
@@ -49,7 +51,7 @@ module.exports = async ctx => {
 
       if (httpResponse.statusCode != 200) { reject(JSON.parse(body)); }
 
-      resolve(body);
+      resolve(JSON.parse(body));
     });
   }))();
 
@@ -62,6 +64,7 @@ module.exports = async ctx => {
   ctx.logger.info('!thirdparty: %j', !thirdparty);
 
   if (!thirdparty) {
+    ctx.logger.info('FBUser: %j, %j', FBUser, typeof FBUser);
     ctx.logger.info('account, name, url: %j, %j, %j', account, FBUser.name, FBUser.picture.data.url);
     userId = await ctx.service.users.createByThirdparty(account, FBUser.name, FBUser.picture.data.url);
     ctx.logger.info('id, protocol, token, userId: %j, %j, %j', id, protocol, token, userId);
