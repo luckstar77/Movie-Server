@@ -53,17 +53,25 @@ module.exports = async ctx => {
     });
   }))();
 
+  ctx.logger.info('thirdparty id, protocol: %j, %j', id, protocol);
   const thirdparty = await ctx.service.thirdparties.find(id, protocol);
+  ctx.logger.info('thirdparty: %j', thirdparty);
   const account = `${protocol}_${id}`;
   let userId = thirdparty && thirdparty.users_id;
+  ctx.logger.info('userId: %j', userId);
 
   if (!thirdparty) {
+    ctx.logger.info('account, name, url: %j, %j, %j', account, FBUser.name, FBUser.picture.data.url);
     userId = await ctx.service.users.createByThirdparty(account, FBUser.name, FBUser.picture.data.url);
+    ctx.logger.info('id, protocol, token, userId: %j, %j, %j', id, protocol, token, userId);
     const thirdpartyId = await ctx.service.thirdparties.create(id, protocol, token, userId);
+    ctx.logger.info('thirdpartyId: %j', thirdpartyId);
   }
 
-  const user = await ctx.service.users.find(userId);
+  const user = await ctx.service.users.find(userId);;
+  ctx.logger.info('user, secret: %j, %j', user, ctx.app.config.jwt.secret);
   const userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
+  ctx.logger.info('userToken: %j', userToken);
 
   ctx.body = { token: userToken };
 };
