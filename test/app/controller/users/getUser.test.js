@@ -5,8 +5,8 @@ const { app, assert } = require('egg-mock/bootstrap');
 describe('test/app/controller/users/getUser.test.js', () => {
   let userToken = '';
   let ctx;
-  
-  before( async () => {
+
+  before(async () => {
     ctx = app.mockContext();
     const userId = await ctx.service.users.createByThirdparty('123123', '123123', '123123');
     const user = await ctx.service.users.find(userId);

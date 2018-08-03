@@ -13,7 +13,7 @@ exports.mysql = {
 
 exports.jwt = {
   enable: true,
-  package: "egg-jwt"
+  package: 'egg-jwt',
 };
 
 exports.cors = {

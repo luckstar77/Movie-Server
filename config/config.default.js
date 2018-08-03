@@ -17,11 +17,11 @@ module.exports = appInfo => {
   config.FB = {
     id: process.env.FBId,
     secret: process.env.FBSecret,
-  }
+  };
 
   config.jwt = {
     secret: 'movie',
-  }
+  };
 
   config.mysql = {
     // 单数据库信息配置
@@ -41,10 +41,11 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
-  }
+  };
 
   config.logger = {
     level: 'DEBUG',
+    disableConsoleAfterReady: false,
   };
 
   return config;

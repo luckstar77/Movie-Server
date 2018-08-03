@@ -10,6 +10,6 @@ module.exports = async (ctx, next) => {
       type: 'string',
     },
   });
-  
+
   await next();
 };
