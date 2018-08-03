@@ -59,6 +59,7 @@ module.exports = async ctx => {
   const account = `${protocol}_${id}`;
   let userId = thirdparty && thirdparty.users_id;
   ctx.logger.info('userId: %j', userId);
+  ctx.logger.info('!thirdparty: %j', !thirdparty);
 
   if (!thirdparty) {
     ctx.logger.info('account, name, url: %j, %j, %j', account, FBUser.name, FBUser.picture.data.url);
