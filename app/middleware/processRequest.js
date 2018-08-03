@@ -5,6 +5,7 @@ module.exports = async (ctx, next) => {
       await next();
     } catch (err) {
       ctx.logger.error('err data: %j', err);
+      ctx.body = err;
     }
     ctx.logger.info('response data: %j', ctx.body);
   };
