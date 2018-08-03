@@ -11,7 +11,7 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: false,
-    domainWhiteList: [ 'http://movies.allenkou.info', 'http://localhost' ],
+    domainWhiteList: [ 'movies.allenkou.info', 'localhost' ],
   };
 
   config.FB = {
