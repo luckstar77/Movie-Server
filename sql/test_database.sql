@@ -2,9 +2,9 @@ CREATE DATABASE  IF NOT EXISTS `test_database` /*!40100 DEFAULT CHARACTER SET ut
 USE `test_database`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: docker_database
+-- Host: us-cdbr-iron-east-01.cleardb.net    Database: heroku_1952addf2f18f7e
 -- ------------------------------------------------------
--- Server version	5.7.22
+-- Server version	5.5.56-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,8 +29,6 @@ CREATE TABLE `comments` (
   `movie_id` varchar(16) NOT NULL,
   `users_id` int(10) unsigned NOT NULL,
   `message` mediumtext NOT NULL,
-  `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `updated` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_comments_users1_idx` (`users_id`),
@@ -58,8 +56,6 @@ CREATE TABLE `favorites` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `users_id` int(10) unsigned NOT NULL,
   `movie_id` varchar(16) NOT NULL,
-  `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `updated` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_favorites_users1_idx` (`users_id`),
@@ -89,13 +85,11 @@ CREATE TABLE `thirdparties` (
   `token` varchar(512) NOT NULL,
   `thirdparty_id` varchar(512) NOT NULL,
   `users_id` int(10) unsigned NOT NULL,
-  `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `updated` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_thirdpartys_users_idx` (`users_id`),
   CONSTRAINT `fk_thirdpartys_users` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,11 +114,10 @@ CREATE TABLE `users` (
   `password` varchar(16) DEFAULT NULL,
   `email` varchar(128) DEFAULT NULL,
   `nickname` varchar(64) NOT NULL,
-  `created` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
-  `updated` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `cover` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,4 +138,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-02 11:10:12
+-- Dump completed on 2018-08-03 11:46:44

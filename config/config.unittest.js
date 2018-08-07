@@ -25,7 +25,7 @@ module.exports = () => {
 
   config.logger = {
     consoleLevel: 'DEBUG',
-    disableConsoleAfterReady: true,
+    disableConsoleAfterReady: false,
   };
 
 
