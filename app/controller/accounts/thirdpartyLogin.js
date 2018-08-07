@@ -14,7 +14,7 @@ module.exports = async ctx => {
 
     request.get(FBAuthTokenUrl, (err, httpResponse, body) => {
       ctx.logger.info('FBAuthTokenUrl err: %j', err);
-      ctx.logger.info('FBAuthTokenUrl statusCode: %j', httpResponse.statusCode);
+      ctx.logger.info('FBAuthTokenUrl httpResponse: %j', httpResponse);
       ctx.logger.info('FBAuthTokenUrl body: %j', body);
 
       if (err) { reject(err); }
