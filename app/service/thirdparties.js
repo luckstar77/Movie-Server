@@ -1,3 +1,5 @@
+'use strict';
+
 const Service = require('egg').Service;
 class ThirdpartiesService extends Service {
   async find(thirdparty_id, protocol) {

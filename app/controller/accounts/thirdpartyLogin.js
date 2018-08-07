@@ -12,7 +12,7 @@ module.exports = async ctx => {
   const FBAuthData = await (() => new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'test') { resolve({}); }
 
-    request.get(FBAuthTokenUrl, (err, httpResponse, body, test) => {
+    request.get(FBAuthTokenUrl, (err, httpResponse, body) => {
       ctx.logger.info('FBAuthTokenUrl err: %j', err);
       ctx.logger.info('FBAuthTokenUrl body: %j', body);
 
@@ -25,6 +25,7 @@ module.exports = async ctx => {
       resolve(body);
     });
   }))();
+  ctx.logger.info('FBAuthData: %j', FBAuthData);
 
   ctx.logger.info('id, token: %j, %j', id, token);
   const FBGetUserUrl = `https://graph.facebook.com/${id}?fields=id,name,picture&access_token=${token}`;
@@ -49,7 +50,7 @@ module.exports = async ctx => {
 
       if (err) { reject(err); }
 
-      if (httpResponse.statusCode != 200) { reject(JSON.parse(body)); }
+      if (httpResponse.statusCode !== 200) { reject(JSON.parse(body)); }
 
       resolve(JSON.parse(body));
     });
@@ -72,7 +73,7 @@ module.exports = async ctx => {
     ctx.logger.info('thirdpartyId: %j', thirdpartyId);
   }
 
-  const user = await ctx.service.users.find(userId);;
+  const user = await ctx.service.users.find(userId);
   ctx.logger.info('user, secret: %j, %j', user, ctx.app.config.jwt.secret);
   const userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
   ctx.logger.info('userToken: %j', userToken);
