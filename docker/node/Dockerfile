@@ -8,4 +8,4 @@ EXPOSE 7001
 
 RUN yarn install && yarn cache clean
 
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "test" ]
