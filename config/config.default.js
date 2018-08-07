@@ -14,6 +14,11 @@ module.exports = appInfo => {
     domainWhiteList: [ 'movies.allenkou.info', 'localhost' ],
   };
 
+  exports.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
   config.FB = {
     id: process.env.FBId,
     secret: process.env.FBSecret,
