@@ -9,4 +9,5 @@ module.exports = app => {
   router.get('/user', middlewares.processRequest, middlewares.isLogin, controller.users.getUser);
 
   router.get('/favorites', middlewares.processRequest, middlewares.isLogin, controller.favorites.getFavorites);
+  router.post('/favorite', middlewares.processRequest, middlewares.validateCreateFavoriteBody, middlewares.isLogin, controller.favorites.createFavorite);
 };
