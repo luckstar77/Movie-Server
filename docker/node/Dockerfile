@@ -8,4 +8,6 @@ EXPOSE 7001
 
 RUN yarn install && yarn cache clean
 
-CMD [ "yarn", "test" ]
+CMD [ "test" ]
+
+ENTRYPOINT [ "yarn" ]  
