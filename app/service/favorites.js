@@ -3,7 +3,9 @@
 const Service = require('egg').Service;
 class FavoritesService extends Service {
   async findList(users_id) {
-    return await this.app.mysql.get('favorites', { users_id });
+    return await this.app.mysql.select('favorites', {
+      where: { users_id },
+    });
   }
 
   async create(users_id, movie_id) {
