@@ -2,10 +2,10 @@
 
 module.exports = async (ctx, next) => {
   ctx.validate({
-    movie_id: {
+    favoriteId: {
       type: 'string',
     },
-  });
+  }, ctx.params);
 
   await next();
 };

@@ -10,4 +10,5 @@ module.exports = app => {
 
   router.get('/favorites', middlewares.processRequest, middlewares.isLogin, controller.favorites.getFavorites);
   router.post('/favorite', middlewares.processRequest, middlewares.validateCreateFavoriteBody, middlewares.isLogin, controller.favorites.createFavorite);
+  router.del('/favorite/:favoriteId', middlewares.processRequest, middlewares.validateDeleteFavoriteParam, middlewares.isLogin, controller.favorites.deleteFavorite);
 };

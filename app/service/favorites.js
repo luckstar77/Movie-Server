@@ -16,5 +16,10 @@ class FavoritesService extends Service {
 
     return result.insertId;
   }
+  async del(id) {
+    return await this.app.mysql.delete('favorites', {
+      id,
+    });
+  }
 }
 module.exports = FavoritesService;
