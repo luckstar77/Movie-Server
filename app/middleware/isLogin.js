@@ -9,7 +9,8 @@ module.exports = async (ctx, next) => {
 
   const user = ctx.app.jwt.verify(ctx.get('authorization'), ctx.app.config.jwt.secret);
 
-  ctx.request.body = user;
+  // ctx.request.body = user;
+  ctx.user = user;
 
   await next();
 };
