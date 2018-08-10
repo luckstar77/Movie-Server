@@ -1,10 +1,15 @@
-version: '3'
+version: '2.1'
 
 services:
   mysql:
     build: 
       context: .
       dockerfile: docker/mysql/Dockerfile
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password= --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
     ports:
       - "3306:3306"
   node:
@@ -14,4 +19,5 @@ services:
     ports:
       - "7001:7001"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy

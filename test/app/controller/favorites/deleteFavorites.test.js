@@ -16,7 +16,7 @@ describe('test/app/controller/favorites/deleteFavorites.test.js', () => {
     userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
   });
 
-  it('should GET /user', () => {
+  it('should DELETE /favorite/:favoriteId', () => {
     return app.httpRequest()
       .del(`/favorite/${favoriteId}`)
       .set('authorization', userToken)

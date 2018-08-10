@@ -5,7 +5,16 @@ class UsersService extends Service {
   async find(id) {
     const user = await this.app.mysql.select('users', {
       where: { id },
-      colums: [ 'id', 'account', 'email', 'nickname', 'created', 'updated' ],
+      columns: [ 'id', 'account', 'email', 'nickname', 'cover' ],
+      limit: 1,
+    });
+
+    return user[0];
+  }
+  async findByEmail(email) {
+    const user = await this.app.mysql.select('users', {
+      where: { email },
+      columns: [ 'id', 'account', 'email', 'nickname', 'cover' ],
       limit: 1,
     });
 
@@ -17,6 +26,19 @@ class UsersService extends Service {
       account,
       nickname,
       cover,
+    });
+
+    return result.insertId;
+  }
+
+  async createByEmail(email, password) {
+    const account = email;
+    const nickname = account;
+    const result = await this.app.mysql.insert('users', {
+      account,
+      nickname,
+      email,
+      password,
     });
 
     return result.insertId;

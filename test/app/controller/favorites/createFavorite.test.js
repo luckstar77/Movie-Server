@@ -13,7 +13,7 @@ describe('test/app/controller/favorites/createFavorite.test.js', () => {
     userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
   });
 
-  it('should GET /user', () => {
+  it('should POST /favorite', () => {
     return app.httpRequest()
       .post('/favorite')
       .set('authorization', userToken)

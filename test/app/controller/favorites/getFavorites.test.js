@@ -16,7 +16,7 @@ describe('test/app/controller/favorites/getFavorites.test.js', () => {
     userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
   });
 
-  it('should GET /user', () => {
+  it('should GET /favorites', () => {
     return app.httpRequest()
       .get('/favorites')
       .set('authorization', userToken)
