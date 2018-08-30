@@ -53,5 +53,18 @@ module.exports = appInfo => {
     disableConsoleAfterReady: false,
   };
 
+  config.mailgun = {
+    client: {
+      // api key
+      apiKey: process.env.mailgunApiKey,
+      // domain
+      domain: process.env.mailgunDomain,
+    },
+    // load into app, default is open
+    app: true,
+    // load into agent, default is close
+    agent: false,
+  };
+
   return config;
 };

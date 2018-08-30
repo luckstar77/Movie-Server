@@ -20,3 +20,8 @@ exports.cors = {
   enable: true,
   package: 'egg-cors',
 };
+
+exports.mailgun = {
+  enable: true,
+  package: 'egg-mailgun',
+};

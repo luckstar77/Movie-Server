@@ -43,5 +43,17 @@ class UsersService extends Service {
 
     return result.insertId;
   }
+
+  async sendVerificationCode(to, userId) {
+    const authority = this.app.jwt.verify(userId, this.app.config.jwt.secret);
+    const data = {
+      from: 'Movie Service <postmaster@sandbox7dbea47231184c5d98b35f5e5363cdc4.mailgun.org>',
+      to,
+      subject: 'Movie Authority',
+      text: `<a href=${authority} target="_blank">${authority}</a>`,
+    };
+
+    return await this.app.mailgun.messages().send(data);
+  }
 }
 module.exports = UsersService;
