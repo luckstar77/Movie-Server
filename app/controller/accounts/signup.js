@@ -16,7 +16,5 @@ module.exports = async ctx => {
 
   ctx.body = await ctx.service.users.find(userId);
 
-  const result = await ctx.service.users.sendVerificationCode(email, userId);
-
-  ctx.logger.info('sendVerificationCode result: %j', result);
+  ctx.logger.info(ctx.service.users.sendVerificationCode(email, userId));
 };

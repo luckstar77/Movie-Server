@@ -44,16 +44,26 @@ class UsersService extends Service {
     return result.insertId;
   }
 
-  async sendVerificationCode(to, userId) {
-    const authority = this.app.jwt.verify(userId, this.app.config.jwt.secret);
-    const data = {
-      from: 'Movie Service <postmaster@sandbox7dbea47231184c5d98b35f5e5363cdc4.mailgun.org>',
-      to,
-      subject: 'Movie Authority',
-      text: `<a href=${authority} target="_blank">${authority}</a>`,
-    };
+  async deleteAll() {
+    const result = await this.app.mysql.delete('users');
 
-    return await this.app.mailgun.messages().send(data);
+    return result;
+  }
+
+  async sendVerificationCode(to, userId) {
+    try {
+      const authority = this.app.jwt.sign(JSON.stringify({ userId }), this.app.config.jwt.secret);
+      const data = {
+        from: 'Movie Service <postmaster@sandbox7dbea47231184c5d98b35f5e5363cdc4.mailgun.org>',
+        to,
+        subject: 'Movie Authority',
+        html: `<a href=${authority} target="_blank">${authority}</a>`,
+      };
+
+      this.app.logger.info(await this.app.mailgun.messages().send(data));
+    } catch (err) {
+      this.app.logger.info('mailgun err: %j', err);
+    }
   }
 }
 module.exports = UsersService;

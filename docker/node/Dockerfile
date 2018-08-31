@@ -1,4 +1,4 @@
-FROM node:8.9.0
+FROM node:8
 
 WORKDIR /app
 
@@ -8,6 +8,6 @@ EXPOSE 7001
 
 RUN yarn install && yarn cache clean
 
-CMD [ "test" ]
+CMD [ "dev" ]
 
 ENTRYPOINT [ "yarn" ]  
