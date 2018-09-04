@@ -16,6 +16,12 @@ class ThirdpartiesService extends Service {
 
     return result.insertId;
   }
+
+  async deleteAll() {
+    const result = await this.app.mysql.delete('thirdparties');
+
+    return result;
+  }
 }
 
 module.exports = ThirdpartiesService;

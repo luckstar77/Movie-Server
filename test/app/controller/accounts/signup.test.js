@@ -5,6 +5,8 @@ const { app } = require('egg-mock/bootstrap');
 describe('test/app/controller/accounts/signup.test.js', () => {
   before(async () => {
     const ctx = app.mockContext();
+    await ctx.service.thirdparties.deleteAll();
+    await ctx.service.favorites.deleteAll();
     await ctx.service.users.deleteAll();
   });
 

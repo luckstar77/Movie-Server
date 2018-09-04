@@ -38,6 +38,13 @@ $ npm stop
 $ docker-compose up -d
 ```
 
+### dev
+
+```bash
+$ docker build -f docker/node/local.Dockerfile -t movie-node .
+$ docker run -p 7001:7001 -v /Users/allenlai/Projects/Movie/code/Movie-Server:/app -it -rm movie-node/bin/bash
+```
+
 ### FB
 
 ```bash
