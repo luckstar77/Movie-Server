@@ -45,6 +45,13 @@ $ export FBId=$FBId
 $ export FBSecret=$FBSecret
 ```
 
+### mailgun
+
+```bash
+$ export mailgunApiKey=$mailgunApiKey
+$ export mailgunDomain=$mailgunDomain
+```
+
 ### mysql
 
 ```bash
