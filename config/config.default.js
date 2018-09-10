@@ -9,6 +9,11 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [];
 
+  config.url = {
+    api: '',
+    version: '',
+  };
+
   config.security = {
     csrf: false,
     domainWhiteList: [ 'movies.allenkou.info', 'localhost' ],

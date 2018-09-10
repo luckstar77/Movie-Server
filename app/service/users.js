@@ -7,7 +7,7 @@ class UsersService extends Service {
   async find(id) {
     const user = await this.app.mysql.select('users', {
       where: { id },
-      columns: [ 'id', 'account', 'email', 'nickname', 'cover' ],
+      columns: [ 'id', 'account', 'email', 'nickname', 'cover', 'status' ],
       limit: 1,
     });
 
@@ -16,7 +16,7 @@ class UsersService extends Service {
   async findByEmail(email) {
     const user = await this.app.mysql.select('users', {
       where: { email },
-      columns: [ 'id', 'account', 'email', 'nickname', 'cover' ],
+      columns: [ 'id', 'account', 'email', 'nickname', 'cover', 'status' ],
       limit: 1,
     });
 
@@ -28,6 +28,7 @@ class UsersService extends Service {
       account,
       nickname,
       cover,
+      status: 'ACTIVE',
     });
 
     return result.insertId;
@@ -46,6 +47,16 @@ class UsersService extends Service {
     return result.insertId;
   }
 
+  async setStatusById(id) {
+    const status = 'ACTIVE';
+    const result = await this.app.mysql.update('users', {
+      id,
+      status,
+    });
+
+    return result.insertId;
+  }
+
   async deleteAll() {
     const result = await this.app.mysql.delete('users');
 
@@ -54,7 +65,7 @@ class UsersService extends Service {
 
   async sendVerificationCode(to, userId) {
     try {
-      const authority = this.app.jwt.sign(JSON.stringify({ userId }), this.app.config.jwt.secret);
+      const authority = this.app.jwt.sign(JSON.stringify({ userId }), this.app.config.jwt.secret, { expiresIn: '10m' });
       const href = url.format({
         protocol: this.ctx.request.protocol,
         host: this.ctx.request.host,

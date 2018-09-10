@@ -10,13 +10,9 @@ module.exports = async ctx => {
   const FBAuthTokenUrl = `https://graph.facebook.com/debug_token?access_token=${ctx.app.config.FB.id}|${ctx.app.config.FB.secret}&input_token=${token}`;
 
   const FBAuthData = await (() => new Promise((resolve, reject) => {
-    if (process.env.NODE_ENV === 'test') { resolve({}); }
+    if (process.env.NODE_ENV === 'test') { resolve({}); return; }
 
     request.get(FBAuthTokenUrl, (err, httpResponse, body) => {
-      ctx.logger.info('FBAuthTokenUrl err: %j', err);
-      ctx.logger.info('FBAuthTokenUrl httpResponse: %j', httpResponse);
-      ctx.logger.info('FBAuthTokenUrl body: %j', body);
-
       if (err) { reject(err); }
 
       const data = JSON.parse(body);
@@ -30,7 +26,6 @@ module.exports = async ctx => {
 
   ctx.logger.info('id, token: %j, %j', id, token);
   const FBGetUserUrl = `https://graph.facebook.com/${id}?fields=id,name,picture&access_token=${token}`;
-  ctx.logger.info('FBGetUserUrl: %j', FBGetUserUrl);
 
   const FBUser = await (() => new Promise((resolve, reject) => {
     if (process.env.NODE_ENV === 'test') {
@@ -42,6 +37,8 @@ module.exports = async ctx => {
           },
         },
       });
+
+      return;
     }
 
     request.get(FBGetUserUrl, (err, httpResponse, body) => {

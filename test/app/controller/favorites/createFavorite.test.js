@@ -7,6 +7,13 @@ describe('test/app/controller/favorites/createFavorite.test.js', () => {
   let ctx;
 
   before(async () => {
+    const ctx = app.mockContext();
+    await ctx.service.favorites.deleteAll();
+    await ctx.service.thirdparties.deleteAll();
+    await ctx.service.users.deleteAll();
+  });
+
+  before(async () => {
     ctx = app.mockContext();
     const userId = await ctx.service.users.createByThirdparty('123123', '123123', '123123');
     const user = await ctx.service.users.find(userId);

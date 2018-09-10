@@ -3,6 +3,13 @@
 const { app } = require('egg-mock/bootstrap');
 
 describe('test/app/controller/accounts/thirdpartyLogin.test.js', () => {
+  before(async () => {
+    const ctx = app.mockContext();
+    await ctx.service.favorites.deleteAll();
+    await ctx.service.thirdparties.deleteAll();
+    await ctx.service.users.deleteAll();
+  });
+
   it('should POST /thirdparty/login', () => {
     return app.httpRequest()
       .post('/thirdparty/login')

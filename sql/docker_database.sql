@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `docker_database` /*!40100 DEFAULT CHARACTER SET 
 USE `docker_database`;
 -- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
--- Host: 127.0.0.1    Database: docker_database
+-- Host: 127.0.0.1    Database: test_database
 -- ------------------------------------------------------
 -- Server version	5.7.22
 
@@ -115,6 +115,7 @@ CREATE TABLE `users` (
   `email` varchar(128) DEFAULT NULL,
   `nickname` varchar(128) NOT NULL,
   `cover` varchar(512) DEFAULT NULL,
+  `status` enum('PENDING','ACTIVE') DEFAULT 'PENDING',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -138,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-10 13:03:08
+-- Dump completed on 2018-09-05 18:25:37
