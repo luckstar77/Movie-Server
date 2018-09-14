@@ -58,7 +58,6 @@ class UsersService extends Service {
   }
 
   async setById(id, data) {
-    const status = 'ACTIVE';
     const result = await this.app.mysql.update('users', {
       ...data,
       id,
