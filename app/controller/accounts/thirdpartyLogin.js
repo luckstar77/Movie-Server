@@ -49,6 +49,7 @@ module.exports = async ctx => {
       resolve(JSON.parse(body));
     });
   }))();
+  ctx.logger.info('FBUser: %j', FBUser);
 
   const thirdparty = await ctx.service.thirdparties.find(id, protocol);
   const account = `${protocol}_${id}`;
