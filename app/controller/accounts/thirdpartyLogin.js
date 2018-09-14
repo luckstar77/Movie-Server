@@ -54,14 +54,25 @@ module.exports = async ctx => {
   const thirdparty = await ctx.service.thirdparties.find(id, protocol);
   const account = `${protocol}_${id}`;
   let userId = thirdparty && thirdparty.users_id;
+  let nickname = FBUser.name;
+  let cover = FBUser.picture.data.url;
 
   if (!thirdparty) {
-    userId = await ctx.service.users.createByThirdparty(account, FBUser.name, FBUser.picture.data.url);
+    userId = await ctx.service.users.createByThirdparty(account, nickname, cover);
     const thirdpartyId = await ctx.service.thirdparties.create(id, protocol, token, userId);
     ctx.logger.info('thirdpartyId: %j', thirdpartyId);
-  }
+  } 
 
   const user = await ctx.service.users.find(userId);
+  
+  if (thirdparty)  {
+    await ctx.service.users.setById(userId, {
+      ...user,
+      nickname,
+      cover
+    });
+  }
+  
   const userToken = ctx.app.jwt.sign(JSON.stringify(user), ctx.app.config.jwt.secret);
 
   ctx.body = { token: userToken };

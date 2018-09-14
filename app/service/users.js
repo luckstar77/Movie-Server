@@ -57,6 +57,16 @@ class UsersService extends Service {
     return result.insertId;
   }
 
+  async setById(id, data) {
+    const status = 'ACTIVE';
+    const result = await this.app.mysql.update('users', {
+      ...data,
+      id,
+    });
+
+    return result.insertId;
+  }
+
   async deleteAll() {
     const result = await this.app.mysql.delete('users');
 
