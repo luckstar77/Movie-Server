@@ -25,3 +25,8 @@ exports.mailgun = {
   enable: true,
   package: 'egg-mailgun',
 };
+
+exports.io = {
+  enable: true,
+  package: 'egg-socket.io',
+};

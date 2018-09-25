@@ -71,5 +71,15 @@ module.exports = appInfo => {
     agent: false,
   };
 
+  config.io = {
+    init: { }, // passed to engine.io
+    namespace: {
+      '/': {
+        connectionMiddleware: [],
+        packetMiddleware: [],
+      },
+    },
+  };
+
   return config;
 };
