@@ -40,11 +40,14 @@ $ docker-compose up -d
 
 ### dev
 
-```bash
-$ docker build -f docker/mysql/Dockerfile -t movie-mysql .
-$ docker run -p 3306:3306 --rm -d movie-mysql
-$ docker build -f docker/node/local.Dockerfile -t movie-node .
-$ docker run -p 7001:7001 -v /Users/allenlai/Projects/Movie/code/Movie-Server:/app -it --rm movie-node /bin/bash
+```test
+$ docker-compose -f local.docker-compose.yml up -d
+$ docker-compose -f local.docker-compose.yml up node
+```
+
+```dev
+$ docker-compose -f local.docker-compose.yml up -d
+$ docker-compose -f docker-compose.yml up node
 ```
 
 ### FB

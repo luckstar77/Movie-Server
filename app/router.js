@@ -15,4 +15,10 @@ module.exports = app => {
   router.get('/favorites', middlewares.processRequest, middlewares.isLogin, controller.favorites.getFavorites);
   router.post('/favorite', middlewares.processRequest, middlewares.validateCreateFavoriteBody, middlewares.isLogin, controller.favorites.createFavorite);
   router.del('/favorite/:favoriteId', middlewares.processRequest, middlewares.validateDeleteFavoriteParam, middlewares.isLogin, controller.favorites.deleteFavorite);
+
+  // app.io.of('/')
+  app.io.route('chat', app.io.controller.chat.index);
+
+  // app.io.of('/chat')
+  app.io.of('/chat').route('chat', app.io.controller.chat.index);
 };

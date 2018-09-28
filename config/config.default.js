@@ -72,13 +72,20 @@ module.exports = appInfo => {
   };
 
   config.io = {
-    init: { }, // passed to engine.io
     namespace: {
       '/': {
-        connectionMiddleware: [],
+        connectionMiddleware: [ 'auth' ],
+        packetMiddleware: [ 'filter' ],
+      },
+      '/chat': {
+        connectionMiddleware: [ 'auth' ],
         packetMiddleware: [],
       },
     },
+    // redis: {
+    //   host: process.env.redisHost,
+    //   port: 6379,
+    // },
   };
 
   return config;

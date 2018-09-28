@@ -14,7 +14,8 @@
     "egg-socket.io": "^4.1.3",
     "egg-validate": "^1.0.0",
     "fb": "^2.0.0",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "socket.io-client": "^2.1.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -30,13 +31,13 @@
     "node": ">=8.9.0"
   },
   "scripts": {
-    "start": "egg-scripts start --port=$PORT --title=egg-server-Movie-Server",
+    "start": "egg-scripts start --port=$PORT --title=egg-server-Movie-Server --sticky",
     "docker": "egg-scripts start --port=$PORT --title=egg-server-Movie-Server",
     "stop": "egg-scripts stop --title=egg-server-Movie-Server",
-    "dev": "egg-bin dev",
+    "dev": "egg-bin dev --sticky",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",
-    "test-local": "NODE_ENV=test egg-bin test",
+    "test-local": "NODE_ENV=test egg-bin test --sticky",
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
